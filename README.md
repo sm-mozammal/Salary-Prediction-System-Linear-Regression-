@@ -1,7 +1,7 @@
 # Salary Prediction using Linear Regression
 
 ## Project Overview
-This project implements a simple linear regression approach to predict employee salary from input features. The repository contains scripts to prepare data, train a model, and run basic predictions using Python.
+This project implements a simple linear regression approach to predict employee salary from input features. It exposes a FastAPI service for running predictions and includes scripts to train the model.
 
 ## Linear Regression (brief)
 - Type: Supervised learning (regression).
@@ -13,7 +13,7 @@ This project implements a simple linear regression approach to predict employee 
 ## How this project is organized
 - `data.csv` — dataset with input features and target salary values.
 - `traine.py` — training script (loads data, trains the linear regression model, and saves the model or parameters).
-- `main.py` — entry point for running predictions or demonstrating the trained model.
+- `main.py` — FastAPI app for running predictions.
 - `requirements.txt` — Python dependencies needed to run the code.
 
 ## Quick start
@@ -36,13 +36,15 @@ pip install -r requirements.txt
 python traine.py
 ```
 
-4. Make predictions / run the demo:
+4. Start the FastAPI server:
 
 ```bash
-python main.py
+uvicorn main:app --reload
 ```
 
-If `traine.py` saves model parameters or a serialized model, `main.py` should load those to perform predictions. If not, run training first and then adapt `main.py` to load the trained weights.
+Then send requests to the API endpoints defined in `main.py`.
+
+If `traine.py` saves model parameters or a serialized model, the FastAPI app should load those to perform predictions. If not, run training first and then adapt `main.py` to load the trained weights.
 
 ## Notes & tips
 - Inspect `traine.py` to see which features are used and whether any preprocessing (scaling, encoding) is applied — match that when sending inputs to `main.py`.
